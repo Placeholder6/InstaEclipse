@@ -34,6 +34,10 @@
             android:name=".mods.devops.config.JsonExportActivity"
             android:exported="true"
             android:theme="@style/Theme.InstaEclipse" />
+        <activity
+            android:name=".activities.EclipseSettingsActivity"
+            android:theme="@style/Theme.InstaEclipse"
+            android:exported="true" />
 
         <!-- Xposed Meta-data -->
         <meta-data
