@@ -6,11 +6,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -34,63 +34,95 @@ public class UIHookManager {
     }
 
     public static void setupHooks(Activity activity) {
-        
-        // 1. Hook HAMBURGER MENU (Profile Settings) -> Long Press
-        String[] menuIds = {"menu_settings_row", "action_bar_button_action", "settings_icon"};
-        for (String id : menuIds) {
-            hookLongPress(activity, id, v -> {
+        // We delay the hook slightly to ensure the View Hierarchy is built
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            
+            // 1. Hook Hamburger Menu (Options)
+            // It is usually described as "Options" or "Settings"
+            hookByContentDescription(activity, new String[]{"Options", "Settings"}, v -> {
                 VibrationUtil.vibrate(activity);
                 EclipseSettingsController.open(activity);
                 return true;
             });
-        }
 
-        // 2. Hook Search Tab (Fallback) -> Long Press
-        hookLongPress(activity, "search_tab", v -> {
-            VibrationUtil.vibrate(activity);
-            EclipseSettingsController.open(activity);
-            return true;
-        });
+            // 2. Hook Search Tab
+            hookByContentDescription(activity, new String[]{"Search and explore", "Search"}, v -> {
+                VibrationUtil.vibrate(activity);
+                EclipseSettingsController.open(activity);
+                return true;
+            });
 
-        // 3. Hook Inbox -> Ghost Quick Toggle
-        String[] inboxIds = {"action_bar_inbox_button", "direct_tab"};
-        for (String id : inboxIds) {
-            hookLongPress(activity, id, v -> {
+            // 3. Hook Inbox (Direct)
+            hookByContentDescription(activity, new String[]{"Message", "Messenger", "Direct", "Chats"}, v -> {
                 GhostModeUtils.toggleSelectedGhostOptions(activity);
                 VibrationUtil.vibrate(activity);
                 return true;
             });
-        }
-        
-        addGhostEmojiNextToInbox(activity, GhostModeUtils.isGhostModeActive());
-        
-        // 4. Hook Gallery -> Mark as Seen
-        hookLongPress(activity, "row_thread_composer_button_gallery", v -> {
-             VibrationUtil.vibrate(activity);
-             if (!FeatureFlags.isGhostSeen) return true;
-             FeatureFlags.isGhostSeen = false;
-             
-             activity.getWindow().getDecorView().post(() -> {
-                 try {
-                     @SuppressLint("DiscouragedApi") int messageListId = activity.getResources().getIdentifier("message_list", "id", activity.getPackageName());
-                     View view = activity.findViewById(messageListId);
-                     if (view instanceof ViewGroup) {
-                         view.scrollBy(0, -100);
-                         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                             view.scrollBy(0, 100);
-                             FeatureFlags.isGhostSeen = true;
-                             Toast.makeText(activity, "✅ Message was marked as read", Toast.LENGTH_SHORT).show();
-                         }, 300);
-                     } else {
-                        new Handler(Looper.getMainLooper()).postDelayed(() -> FeatureFlags.isGhostSeen = true, 300);
-                     }
-                 } catch (Exception e) {}
-             });
-             return true;
-        });
+
+            // 4. Hook Gallery (Mark as Seen) - This one often needs ID fallback
+            hookLongPressId(activity, "row_thread_composer_button_gallery", v -> {
+                VibrationUtil.vibrate(activity);
+                if (!FeatureFlags.isGhostSeen) return true;
+                FeatureFlags.isGhostSeen = false;
+                
+                activity.getWindow().getDecorView().post(() -> {
+                    try {
+                        @SuppressLint("DiscouragedApi") int messageListId = activity.getResources().getIdentifier("message_list", "id", activity.getPackageName());
+                        View view = activity.findViewById(messageListId);
+                        if (view instanceof ViewGroup) {
+                            view.scrollBy(0, -100);
+                            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                                view.scrollBy(0, 100);
+                                FeatureFlags.isGhostSeen = true;
+                                Toast.makeText(activity, "✅ Message was marked as read", Toast.LENGTH_SHORT).show();
+                            }, 300);
+                        } else {
+                           new Handler(Looper.getMainLooper()).postDelayed(() -> FeatureFlags.isGhostSeen = true, 300);
+                        }
+                    } catch (Exception e) {}
+                });
+                return true;
+            });
+
+            addGhostEmojiNextToInbox(activity, GhostModeUtils.isGhostModeActive());
+
+        }, 1000); // 1 second delay to wait for UI
     }
 
-    private static void hookLongPress(Activity activity, String viewName, View.OnLongClickListener listener) {
+
+    /**
+     * Powerful helper that finds views by their Accessibility Description ("Options", "Search", etc.)
+     * This bypasses obfuscated IDs.
+     */
+    private static void hookByContentDescription(Activity activity, String[] descriptions, View.OnLongClickListener listener) {
+        View decorView = activity.getWindow().getDecorView();
+        ArrayList<View> foundViews = new ArrayList<>();
+        
+        // Find all potential matches
+        decorView.findViewsWithText(foundViews, descriptions[0], View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        
+        // If first keyword failed, try others
+        if (foundViews.isEmpty() && descriptions.length > 1) {
+            for (int i = 1; i < descriptions.length; i++) {
+                decorView.findViewsWithText(foundViews, descriptions[i], View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                if (!foundViews.isEmpty()) break;
+            }
+        }
+
+        // Hook them
+        for (View v : foundViews) {
+            if (v.isClickable() || v.isLongClickable()) {
+                v.setOnLongClickListener(listener);
+            } else {
+                // If the matching view isn't clickable (e.g. it's just the icon), hook its parent
+                if (v.getParent() instanceof View) {
+                    ((View) v.getParent()).setOnLongClickListener(listener);
+                }
+            }
+        }
+    }
+
+    private static void hookLongPressId(Activity activity, String viewName, View.OnLongClickListener listener) {
         try {
             @SuppressLint("DiscouragedApi") int viewId = activity.getResources().getIdentifier(viewName, "id", activity.getPackageName());
             View view = activity.findViewById(viewId);
@@ -108,6 +140,7 @@ public class UIHookManager {
                 currentActivity = activity;
                 activity.runOnUiThread(() -> {
                     setupHooks(activity);
+                    // Initial Toast
                     if (!FeatureFlags.showFeatureToasts || CustomToast.toastShown) return;
                     CustomToast.toastShown = true;
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -116,7 +149,7 @@ public class UIHookManager {
                             sb.append(entry.getValue() ? "✅ " : "❌ ").append(entry.getKey()).append("\n");
                         }
                         CustomToast.showCustomToast(activity.getApplicationContext(), sb.toString().trim());
-                    }, 1000);
+                    }, 2000);
                 });
             }
         });
@@ -137,7 +170,6 @@ public class UIHookManager {
         });
         BottomSheetHookUtil.hookBottomSheetNavigator(Module.dexKitBridge);
         
-        // Modal Activity Hook
         XposedHelpers.findAndHookMethod("com.instagram.modal.ModalActivity", classLoader, "onResume", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) {
