@@ -9,11 +9,6 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
-    <!-- Define a custom style for Spinner Popup -->
-    <style name="SpinnerPopup" parent="Theme.AppCompat.Light">
-        <item name="android:textAppearance">@style/SpinnerTextAppearance</item>
-        <item name="android:background">@android:color/black</item>
-    </style>
 
     <!-- Define the text appearance for the Spinner items -->
     <style name="SpinnerTextAppearance" parent="TextAppearance.AppCompat.Body1">
