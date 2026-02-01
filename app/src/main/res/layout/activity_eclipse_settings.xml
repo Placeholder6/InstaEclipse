@@ -53,7 +53,7 @@
             <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="16dp"/>
 
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Privacy & Ads" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+                android:text="Privacy &amp; Ads" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
             
             <Switch android:id="@+id/switch_ad_block" android:text="Block Ads" style="@style/EclipseSwitch"/>
             <Switch android:id="@+id/switch_analytics" android:text="Block Analytics" style="@style/EclipseSwitch"/>
