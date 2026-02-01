@@ -83,16 +83,12 @@ public class EclipseSettingsController {
         }
     }
 
-    // --- UI BINDING LOGIC (Same as your Activity, but for Views) ---
-
     private static void setupUI(Activity activity, View view) {
         SettingsManager.init(activity);
 
-        // Close Button
         ImageView closeBtn = view.findViewById(R.id.btn_close);
         if (closeBtn != null) closeBtn.setOnClickListener(v -> close(activity));
 
-        // Setup Switches
         setupGhostMode(view);
         setupAdBlock(view);
         setupDistraction(view);
@@ -128,8 +124,11 @@ public class EclipseSettingsController {
                     FeatureFlags.isDistractionFree = true;
                     SettingsManager.saveAllFlags();
                     v.setEnabled(false);
-                    // Refresh view simply by closing and reopening (or just disabling others manually)
-                    bindSwitch(view, R.id.switch_disable_stories, FeatureFlags.disableStories, null); // Re-bind to trigger lock check
+                    // Refresh view simply by re-binding logic to force lock check
+                    bindSwitch(view, R.id.switch_disable_stories, FeatureFlags.disableStories, null);
+                    bindSwitch(view, R.id.switch_disable_feed, FeatureFlags.disableFeed, null);
+                    bindSwitch(view, R.id.switch_disable_reels, FeatureFlags.disableReels, null);
+                    bindSwitch(view, R.id.switch_disable_explore, FeatureFlags.disableExplore, null);
                 }
             });
         }
