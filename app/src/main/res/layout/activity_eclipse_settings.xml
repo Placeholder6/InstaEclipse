@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#1F1F1F"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_cancel"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="InstaEclipse Settings"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Ghost Mode" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+            
+            <Switch android:id="@+id/switch_ghost_seen" android:text="Hide Seen" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_ghost_typing" android:text="Hide Typing" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_ghost_screenshot" android:text="Anti-Screenshot" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_ghost_view_once" android:text="Keep View Once" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_ghost_story" android:text="Hide Story View" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_ghost_live" android:text="Hide Live View" style="@style/EclipseSwitch"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="16dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Privacy & Ads" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+            
+            <Switch android:id="@+id/switch_ad_block" android:text="Block Ads" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_analytics" android:text="Block Analytics" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_tracking" android:text="Remove Tracking Links" style="@style/EclipseSwitch"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="16dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Distraction Free" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+
+            <Switch android:id="@+id/switch_extreme_mode" android:text="🔒 Extreme Mode (No Going Back)" style="@style/EclipseSwitch" android:textColor="#FF5252"/>
+            <Switch android:id="@+id/switch_disable_stories" android:text="Disable Stories" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_disable_feed" android:text="Disable Feed" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_disable_reels" android:text="Disable Reels" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_disable_explore" android:text="Disable Explore" style="@style/EclipseSwitch"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="16dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Miscellaneous" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+            
+            <Switch android:id="@+id/switch_story_flip" android:text="Disable Auto-Swipe" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_video_autoplay" android:text="Disable Video Autoplay" style="@style/EclipseSwitch"/>
+            <Switch android:id="@+id/switch_follower_toast" android:text="Show Follower Status" style="@style/EclipseSwitch"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="16dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Developer" android:textColor="#448AFF" android:textStyle="bold" android:layout_marginBottom="10dp"/>
+            
+            <Switch android:id="@+id/switch_dev_mode" android:text="Enable Dev Options" style="@style/EclipseSwitch"/>
+            
+            <Button
+                android:id="@+id/btn_import_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Import Config"
+                android:layout_marginTop="8dp"/>
+                
+            <Button
+                android:id="@+id/btn_export_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Export Config"
+                android:layout_marginTop="8dp"/>
+
+            <View android:layout_width="match_parent" android:layout_height="20dp"/>
+            
+            <Button
+                android:id="@+id/btn_restart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Restart App"
+                android:backgroundTint="#FF5252"/>
+                
+            <Button
+                android:id="@+id/btn_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View on GitHub"
+                android:backgroundTint="#333333"
+                android:layout_marginTop="8dp"/>
+                
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Created by @reso7200"
+                android:gravity="center"
+                android:textColor="#777777"
+                android:padding="20dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
