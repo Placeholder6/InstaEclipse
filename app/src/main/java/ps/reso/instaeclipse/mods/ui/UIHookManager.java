@@ -4,6 +4,7 @@ import static ps.reso.instaeclipse.mods.ghost.ui.GhostEmojiManager.addGhostEmoji
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -40,14 +41,33 @@ public class UIHookManager {
     }
 
     public static void setupHooks(Activity activity) {
-        // Hook Search Tab (open InstaEclipse Settings)
+        
+        // -----------------------------------------------------------------
+        // 1. Hook Search Tab -> Launches "EclipseSettingsActivity" (Full UI)
+        // -----------------------------------------------------------------
         hookLongPress(activity, "search_tab", v -> {
-            DialogUtils.showEclipseOptionsDialog(activity);
             VibrationUtil.vibrate(activity);
+
+            try {
+                // Launch the native Activity from your module
+                Intent intent = new Intent();
+                // Ensure the package name matches your AndroidManifest.xml exactly
+                intent.setClassName("ps.reso.instaeclipse", "ps.reso.instaeclipse.activities.EclipseSettingsActivity");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                
+                activity.startActivity(intent);
+
+            } catch (Exception e) {
+                XposedBridge.log("InstaEclipse: Failed to launch Settings Activity - " + e.getMessage());
+                // Fallback: Show the old dialog if the Activity fails to load
+                DialogUtils.showEclipseOptionsDialog(activity);
+            }
             return true;
         });
 
-        // Hook Inbox Button (toggle Ghost Quick Options)
+        // -----------------------------------------------------------------
+        // 2. Hook Inbox Button -> Toggles Ghost Quick Options
+        // -----------------------------------------------------------------
         String[] possibleIds = {"action_bar_inbox_button", "direct_tab"};
 
         for (String id : possibleIds) {
@@ -65,7 +85,9 @@ public class UIHookManager {
 
         addGhostEmojiNextToInbox(activity, GhostModeUtils.isGhostModeActive());
 
-        // Mark messages (DM) as seen by holding on gallery button
+        // -----------------------------------------------------------------
+        // 3. Hook Gallery Button (in DM) -> Mark Message as Seen
+        // -----------------------------------------------------------------
         hookLongPress(activity, "row_thread_composer_button_gallery", v -> {
             VibrationUtil.vibrate(activity);
 
@@ -82,7 +104,6 @@ public class UIHookManager {
                     View view = activity.findViewById(messageListId);
 
                     if (view instanceof ViewGroup messageList) {
-
                         // Try scrolling via translation if standard scroll methods don't exist
                         messageList.scrollBy(0, -100); // scroll up
 
@@ -94,10 +115,8 @@ public class UIHookManager {
 
                         }, 300);
 
-
                     } else {
                         XposedBridge.log("⚠️ message_list not a ViewGroup or not found — fallback to reset flag");
-
                         new Handler(Looper.getMainLooper()).postDelayed(() -> FeatureFlags.isGhostSeen = true, 300);
                     }
                 } catch (Exception e) {
@@ -107,10 +126,9 @@ public class UIHookManager {
 
             return true;
         });
-
     }
 
-    // Hook long press method
+    // Helper: Safely hook long press on a View by name
     private static void hookLongPress(Activity activity, String viewName, View.OnLongClickListener listener) {
         try {
             @SuppressLint("DiscouragedApi") int viewId = activity.getResources().getIdentifier(viewName, "id", activity.getPackageName());
@@ -177,7 +195,7 @@ public class UIHookManager {
         // Hook getBottomSheetNavigator - Instagram Main
         BottomSheetHookUtil.hookBottomSheetNavigator(Module.dexKitBridge);
 
-        // Hook onResume - Model
+        // Hook onResume - Modal Activity
         XposedHelpers.findAndHookMethod("com.instagram.modal.ModalActivity", classLoader, "onResume", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) {
