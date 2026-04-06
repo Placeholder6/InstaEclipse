@@ -1,113 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app wide -->
     <string name="app_name">InstaEclipse</string>
-    <string name="home">Ana Səhifə</string>
-    <string name="features">Funksiyalar</string>
+    <string name="version" translatable="false">v0.4.5 Beta</string>
+    <string name="home">Əsas səhifə</string>
+    <string name="features">Xüsusiyyətlər</string>
     <string name="help">Kömək</string>
+    <string name="instagram_version">Versiya</string>
 
     <!-- home -->
-    <string name="instagram_version">Versiya</string>
-    <string name="module_disabled">Modul aktiv deyil. Lütfən aktiv edin.</string>
+    <string name="module_disabled">Modul aktiv deyil. Xahiş olunur, onu aktivləşdirin.</string>
 
-    <string name="module_status">Modul Statusu:</string>
+    <string name="module_status">Modul Vəziyyəti:</string>
 
-    <string name="module_status_disabled">Modul Statusu: Deaktiv</string>
-    <string name="request_enable_module">Lütfən modulu Xposed Installer\'da aktiv edin.</string>
+    <string name="module_status_disabled">Modul Vəziyyəti: Qapalı</string>
+    <string name="request_enable_module">Zəhmət olmasa, modulu Xposed Installer-da aktivləşdirin.</string>
 
-    <string name="module_status_enabled_no_root">Modul Statusu: Aktiv (Root Yoxdur)</string>
-    <string name="request_enable_root">Avtomatik yenidən başlatma üçün root  lazımdır. Manual yenidən başlatma lazımdır.</string>
+    <string name="module_status_enabled_no_root">Modul Vəziyyəti: Aktivdir (Root Girişi Yoxdur)</string>
+    <string name="request_enable_root">Birbaşa yenidən başlatmaq üçün root girişi tələb olunur. Əl ilə yenidən başlatmaq ehtiyacı var.</string>
 
-    <string name="module_status_enabled">Modul Statusu: Aktiv</string>
+    <string name="module_status_enabled">Modul Vəziyyəti: Aktivdir</string>
     <string name="module_active">Modul aktivdir və işləyir.</string>
 
     <string name="checking_instagram">Instagram Yoxlanılır</string>
-    <string name="installed_instagram_version">Quraşdırılmış Instagram Versiyası: </string>
-    <string name="not_installed_instagram">Instagram quraşdırılmayıb.</string>
-    <string name="error_instagram">Instagram statusu yoxlanarkən xəta baş verdi.</string>
-    
-    <string name="launch_instagram">Instagram-ı işə sal</string>
-    <string name="download_apk">APK-ni yüklə</string>
-    <string name="how_to_use">Necə istifadə etməli</string>
-    <string name="module_not_working_title">Modul hələ də işləmir?</string>
+    <string name="installed_instagram_version">Instagram quraşdırılıb</string>
+    <string name="not_installed_instagram">Instagram quraşdırılmayıb</string>
+    <string name="error_instagram">Instagram vəziyyətini yoxlayanda xəta</string>
 
-    <string name="usage_instructions">Axtarış ikonuna uzun basın</string>
-    <string name="contributors">Təhfə Verənlər</string>
+    <string name="launch_instagram">Instagram-ı işə sal</string>
+    <string name="download_apk">APK-nı Yüklə</string>
+    <string name="how_to_use">Necə istifadə etməli</string>
+    <string name="usage_instructions">Axtarış simvolun basılı saxlayın</string>
+    <string name="contributors">Töhfəçilər</string>
     <string name="special_thanks">Xüsusi Təşəkkürlər</string>
 
-    <!-- Don’t translate! -->
+    <!-- Don't translate! -->
+    <string name="instagram_logo" translatable="false">Instagram Logo</string>
+    <string name="instagram_info" translatable="false">instagram_info</string>
 
     <!-- help -->
-    <string name="help_amp_troubleshooting">Kömək &amp; Problemlərin Həlli</string>
-    <string name="find_updates_and_documentation">Yeniləmələri və Dökümentasiyanı tapın.</string>
-    <string name="go_to_github">GitHub\'a Keç</string>
-    <string name="find_support">Dəstək alın.</string>
-    <string name="go_to_telegram">Telegram\'a Keç</string>
+    <string name="help_amp_troubleshooting">Kömək və Problemlərin Həlli</string>
+    <string name="find_updates_and_documentation">Yeniləmələri və sənədləri tapın.</string>
+    <string name="go_to_github">GitHub-a keçin</string>
+    <string name="find_support">Dəstək Tapın.</string>
+    <string name="go_to_telegram">Telegram-a Keçin</string>
+    <string name="instaeclipse_telegram_group" translatable="false">InstaEclipse Telegram Group</string>
 
-    <!-- Don’t translate! -->
+    <!-- Don't translate! -->
+    <string name="instaeclipse_github" translatable="false">InstaEclipse GitHub</string>
     <string name="github">GitHub</string>
     <string name="telegram">Telegram</string>
 
     <!-- faq -->
-    <string name="frequently_asked_questions">Tez-tez Soruşulan Suallar</string>
-    <string name="faq_1">1. Google Play Versiyasındı işləmir və ya xəta verir?\n- APKMirror APK\'lərindən istifadə edin.</string>
-    <string name="faq_2">2. Modul aktiv deyil?\n- Modulu LSPosed\'də deaktiv edib yenidən aktiv edin.</string>
-    <string name="faq_3">3. Funksiyalar işləmir?\n- Instagram\'ı zorla dayandırıb keşini təmizləyin.</string>
-    <string name="faq_4">4. Tərtibatçı variantları xəta verir?\n- Tərtibatçı variantları bələdçisini izləyin.</string>
-    <string name="faq_5">5. Tərtibatçı variantlarında qəribə etiketlər və ya nömrələr var?\n- Sabit versiyalardı qarışıq olduğunu gözünə alaraq Beta və ya Alfa versiyalardan istifadə edin.</string>
-    <string name="faq_6">6. "Dikkat Dağıtıcıları Bağla" funksiyası aktiv amma məzmun hələ də görünür?\n- Instagram\'ı zorla dayandırın və keşini təmizləyin.</string>
+    <string name="frequently_asked_questions">Tez-tez verilən suallar</string>
+    <string name="faq_1"><b>1. Google Play Versiyasın istifadə edərkən işləmir/xəta olur?</b>\n- APKMirror APK-ların istifadə et</string>
+    <string name="faq_2"><b>2. Modul aktiv deyil?</b>\n- LSPosed-də modulu qapadın və təkrar aktivləşdirin.</string>
+    <string name="faq_3"><b>3. Xüsusiyyətlər işləmir?</b>\n- Instagram-ı məcburi dayandırın və yenidən başladın.</string>
+    <string name="faq_4"><b>4. Tərtibatçı seçimləri xətalara səbəb olur?</b>\n- Tərtibatçı seçimləri rəhbərini izləyin.</string>
+    <string name="faq_5"><b>5. Tərtibatçı seçimlərində qəribə etiketlər və ya nömrələr varmı?</b>\n- Stabil versiyalarda qarışıqlıq olduğu üçün Beta və ya Alpha versiyaların istifadə edin.</string>
+    <string name="faq_6"><b>6. Diqqəti yayındırmayan işləkdir, ancaq məzmun hələ də görünür?</b>\n- Instagram-ı məcburi dayandırın və keşkəsini təmizləyin.</string>
+
+    <!-- guide -->
+    <string name="module_not_working_title">Modul hələ də işləmir?</string>
+    <string name="module_not_working_description" tools:ignore="MissingTranslation" translatable="false"><![CDATA[If you are <b>rooted</b> try using <a href="https://github.com/JingMatrix/LSPosed/releases/latest">JingMatrix\'s LSPosed</a><br/><br/>If you are <b>not rooted</b> install <a href="https://github.com/JingMatrix/LSPatch/releases/latest">JingMatrix\'s LSPatch</a> then follow <a href="https://t.me/instaEclipse_discussion/158/5149this guide</a>]]></string>
 
     <!-- features -->
-    <string name="developer_options">Tərtibatçı Variantları</string>
-    <string name="ghost_mode">Gizli Rejim</string>
-    <string name="distraction_free">Diqqət Dağıtıcıları Bağla</string>
-    <string name="remove_ads">Reklamları Sil</string>
-    <string name="remove_analytics">Analitikləri Sil</string>
+    <string name="developer_options">Tərtibatçı Seçimləri</string>
+    <string name="ghost_mode">Kabus Rejimi</string>
+    <string name="distraction_free">Diqqəti yayındırmayan</string>
+    <string name="remove_ads">Reklamları Təmizlə</string>
+    <string name="remove_analytics">Analitiki Təmizlə</string>
 
-    <string name="enable_disable_all">Hamısını Aktiv/Deaktiv Et</string>
+    <string name="enable_disable_all">Hamısını Aktiv et/Qapat</string>
 
-    <!-- Don’t translate! -->
+    <!-- Don't translate! -->
+    <string name="hint" translatable="false">Hint</string>
 
     <!-- ghost -->
-    <string name="ghost_mode_options">Gizli Rejim Seçimləri</string>
-    <string name="typing">Yazır</string>
+    <string name="ghost_mode_options">Kabus Rejimi Seçimləri</string>
+    <string name="typing">Yazılır</string>
     <string name="story">Hekayə</string>
-    <string name="view_once">Bir dəfə bax</string>
-    <string name="live">Canlı Yayım</string>
+    <string name="view_once">Bir dəfə baxıb</string>
+    <string name="live">Canlı</string>
     <string name="direct_messages">Birbaşa Mesajlar</string>
-    <string name="disable_typing">"Yazır" Seçimini Deaktiv Et</string>
+    <string name="disable_typing">Yazılır</string>
+    <string name="screen_shot">Ekran görüntüsü</string>
 
     <!-- developer_options -->
-    <string name="screen_shot">Ekran görüntüsü</string>
-    <string name="developer_options_guide">Tərtibatçı Variantları Bələdçisi</string>
-    <string name="dev_options_version_req">Yalnız Beta/Alfa versiyalarında istifadə edin!</string>
-    <string name="dev_options_req">Əvvəlcə daxil olduğunuzdan əmin olun!</string>
+    <string name="developer_options_guide">Tərtibatçı Seçimləri Rəhbəri</string>
+    <string name="dev_options_version_req">Bunu ancaq Beta/Alpha versiyalarında istifadə edin!</string>
+    <string name="dev_options_req">Əvvəlcə giriş etdiyinizə əmin olun!</string>
 
-    <string name="dev_options_1">1. Instagram\'ı açın və Ana Səhifə düyməsini basıb saxlayın.</string>
-    <string name="dev_options_2">2. Tərtibatçı Variantları > MetaConfig Ayarları &amp; Override-lara keçin.</string>
-    <string name="dev_options_3">3. "Employee" sözünü axtarın və aşağıdaki variantları aktiv edin:</string>
-    <string name="dev_options_4">4. Sonda, tətbiqin xəta verməməsi üçün moduldaki Tərtibatçı Variantlarını deaktiv edin.</string>
+    <string name="dev_options_1">1. Instagram-ı açın və əsas səhifə düyməsini basıb saxlayın.</string>
+    <string name="dev_options_2">2. Tərtibatçı Seçimləri > MetaConfig Tənzimləmələri &amp; Overrides-a keçin.</string>
+    <string name="dev_options_3">3. \'Employee\' axtarın və aşağıdakı seçimləri aktivləşdirin:</string>
+    <string name="dev_options_4">4. Son olaraq, tətbiq çökməsin önləmək üçün moduldan Tərtibatçı Seçimlərini qapadın</string>
 
-    <!-- Don’t translate! -->
+    <!-- Don't translate! -->
+    <string name="is_employee" translatable="false">• is employee</string>
+    <string name="is_employee_or_test_user" translatable="false">• is employee or test user</string>
+    <string name="employee_options" translatable="false">• employee options</string>
 
     <!-- distraction free -->
-    <string name="distraction_free_options">Diqqət Dağıtıcıları Bağlat Seçimləri</string>
-    <string name="disable_stories">Hekayələri Deaktiv Et</string>
-    <string name="disable_feed">Axışı Deaktiv Et</string>
-    <string name="disable_reels">Reels\'ləri Deaktiv Et</string>
-    <string name="disable_explore">Kəşf Etməyi Deaktiv Et</string>
-    <string name="disable_comments">Rəyləri Deaktiv Et</string>
+    <string name="distraction_free_options">Diqqəti yayındırmayan seçimlər</string>
+    <string name="disable_stories">Hekayələri Gizlət</string>
+    <string name="disable_feed">Səhifələməni qapadın</string>
+    <string name="disable_reels">Reels video Qapadın</string>
+    <string name="disable_explore">Kəṣfi Qapat</string>
+    <string name="disable_comments">Şərhləri Qapadın</string>
 
     <!-- Miscellaneous -->
     <string name="misc">Müxtəlif</string>
     <string name="miscellaneous_options">Müxtəlif Seçimlər</string>
-    <string name="story_flipping">Hekayə Çevirməni Deaktiv Et</string>
-    <string name="video_autoplay">Video Avtomatik Oynatmağı Deaktiv Et</string>
+    <string name="story_flipping">Hekayə Dəyişməsini Qapat</string>
+    <string name="video_autoplay">Video Birbaşa Oynadılmasın Qapat</string>
+    <string name="follower_toast">İzləyici Ani Bildirişi Göstər</string>
+    <string name="hooked_methods_toast">Aktivləşən Xüsusiyyətlər Bildirişi Göstər</string>
 
     <!-- contributor card -->
-    <string name="hooked_methods_toast">Aktiv edilmiş funksiyalar</string>
-    <string name="contributor_name">Töhfə Verənin Adı</string>
+    <string name="contributor_name">Töhfəçi adı</string>
 
-    <!-- Toast -->
-    <string name="follower_toast">İzləmə statusu</string>
 </resources>

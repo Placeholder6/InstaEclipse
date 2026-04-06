@@ -41,11 +41,31 @@ public class UIHookManager {
 
     public static void setupHooks(Activity activity) {
         // Hook Search Tab (open InstaEclipse Settings)
-        hookLongPress(activity, "search_tab", v -> {
-            DialogUtils.showEclipseOptionsDialog(activity);
-            VibrationUtil.vibrate(activity);
-            return true;
-        });
+        String[] possibleSearch = {"search_tab", "action_bar_end_action_buttons"};
+
+        for (String id : possibleSearch) {
+            @SuppressLint("DiscouragedApi")
+            int viewId = activity.getResources().getIdentifier(id, "id", activity.getPackageName());
+            View view = activity.findViewById(viewId);
+
+            if (view != null) {
+                processSearchView(activity, view, id);
+            } else {
+                // VIEW NOT FOUND YET: Wait for the layout to change and try again
+                final View decorView = activity.getWindow().getDecorView();
+                decorView.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        View lateView = activity.findViewById(viewId);
+                        if (lateView != null) {
+                            processSearchView(activity, lateView, id);
+                            // Remove listener so we don't keep calling this unnecessarily
+                            decorView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    }
+                });
+            }
+        }
 
         // Hook Inbox Button (toggle Ghost Quick Options)
         String[] possibleIds = {"action_bar_inbox_button", "direct_tab"};
@@ -192,6 +212,28 @@ public class UIHookManager {
                 }
             }
         });
+    }
+
+    private static void applySearchHook(Activity activity, View v) {
+        v.setOnLongClickListener(view -> {
+            DialogUtils.showEclipseOptionsDialog(activity);
+            VibrationUtil.vibrate(activity);
+            return true;
+        });
+    }
+
+    private static void processSearchView(Activity activity, View view, String id) {
+        if (id.equals("action_bar_end_action_buttons") && view instanceof ViewGroup container) {
+            for (int i = 0; i < container.getChildCount(); i++) {
+                View child = container.getChildAt(i);
+                CharSequence description = child.getContentDescription();
+                if (description != null && description.toString().toLowerCase().contains("search")) {
+                    applySearchHook(activity, child);
+                }
+            }
+        } else {
+            applySearchHook(activity, view);
+        }
     }
 
 }

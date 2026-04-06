@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--  app wide  -->
+    <string name="app_name">InstaEclipse</string>
+    <string name="home">首页</string>
+    <string name="features">功能</string>
+    <string name="help">帮助</string>
+    <string name="instagram_version">版本</string>
+    <!--  home  -->
+    <string name="module_disabled">模块未启用。请启用它。</string>
+    <string name="module_status">模块状态：</string>
+    <string name="module_status_disabled">模块状态：已禁用</string>
+    <string name="request_enable_module">请在 Xposed 安装程序中启用该模块。</string>
+    <string name="module_status_enabled_no_root">模块状态： 已启用 (无 Root 权限)</string>
+    <string name="request_enable_root">需要 Root 权限才能自动重启。需要手动重启。</string>
+    <string name="module_status_enabled">模块状态：已启用</string>
+    <string name="module_active">模块已启用并正常工作。</string>
+    <string name="checking_instagram">正在检查 Instagram</string>
+    <string name="installed_instagram_version">Instagram 已安装</string>
+    <string name="not_installed_instagram">Instagram 未安装</string>
+    <string name="error_instagram">检查 Instagram 状态时发生错误</string>
+    <string name="launch_instagram">启动 Instagram</string>
+    <string name="download_apk">下载 APK</string>
+    <string name="how_to_use">如何使用</string>
+    <string name="usage_instructions">长按搜索图标</string>
+    <string name="contributors">贡献者</string>
+    <string name="special_thanks">特别感谢</string>
+    <!--  Don't translate!  -->
+    <string name="instagram_logo" translatable="false">Instagram Logo</string>
+    <string name="instagram_info" translatable="false">instagram_info</string>
+    <!--  help  -->
+    <string name="help_amp_troubleshooting">帮助和故障排除</string>
+    <string name="find_updates_and_documentation">查询更新和文档。</string>
+    <string name="go_to_github">前往 GitHub</string>
+    <string name="find_support">查询支持</string>
+    <string name="go_to_telegram">前往 Telegram</string>
+    <string name="instaeclipse_telegram_group" translatable="false">InstaEclipse Telegram Group</string>
+    <!--  Don't translate!  -->
+    <string name="instaeclipse_github" translatable="false">InstaEclipse GitHub</string>
+    <string name="github">GitHub</string>
+    <string name="telegram">Telegram</string>
+    <!--  faq  -->
+    <string name="frequently_asked_questions">常见问题</string>
+    <string name="faq_1">
+<b>1. 使用 Google Play 版本时无法正常运行或崩溃？</b>
+\n- 请使用 APKMirror 下载的版本。
+</string>
+    <string name="faq_2">
+<b>2. 模块未启用？</b>
+\n- 在 LSPosed 中禁用并重新启用该模块。
+</string>
+    <string name="faq_3">
+<b>3. 功能无法使用？</b>
+\n- 强制停止并重新启动 Instagram。
+</string>
+    <string name="faq_4">
+<b>4. 开发者选项导致崩溃？</b>
+\n- 按照开发者选项指南操作。
+</string>
+    <string name="faq_5">
+<b>5. 开发者选项的标签或数字异常</b>
+\n- 使用 Beta 或 Alpha 版本，因为稳定版有进行过混淆。
+</string>
+    <string name="faq_6">
+<b>6. 启用了无干扰模式，但内容仍然显示？</b>
+\n- 强制停止 Instagram 并清除其缓存。
+</string>
+    <!--  guide  -->
+    <string name="module_not_working_title">模块仍然无法使用？</string>
+    <string name="module_not_working_description" tools:ignore="MissingTranslation" translatable="false">
+<![CDATA[ 如果您已<b>获取 root 权限</b>，请尝试使用 <a href="https://github.com/JingMatrix/LSPosed/releases/latest">JingMatrix\'s LSPosed</a><br/><br/>。如果您未<b>获取 root 权限</b>，请安装<a href="https://github.com/JingMatrix/LSPatch/releases/latest">JingMatrix\'s LSPatch</a>，然后依据<a href="https://t.me/instaEclipse_discussion/158/5149">指南</a>进行操作 ]]>
+</string>
+    <!--  features  -->
+    <string name="developer_options">开发者选项</string>
+    <string name="ghost_mode">幽灵模式</string>
+    <string name="distraction_free">无干扰模式</string>
+    <string name="remove_ads">移除广告</string>
+    <string name="remove_analytics">移除分析</string>
+    <string name="enable_disable_all">启用/禁用所有</string>
+    <!--  Don't translate!  -->
+    <string name="hint" translatable="false">Hint</string>
+    <!--  ghost  -->
+    <string name="ghost_mode_options">幽灵模式选项</string>
+    <string name="typing">隐藏输入状态</string>
+    <string name="story">限时动态</string>
+    <string name="view_once">查看一次</string>
+    <string name="live">直播</string>
+    <string name="direct_messages">私信</string>
+    <string name="disable_typing">停用输入状态提示</string>
+    <string name="screen_shot">截图</string>
+    <!--  developer_options  -->
+    <string name="developer_options_guide">开发者选项指南</string>
+    <string name="dev_options_version_req">仅能在 Beta/Alpha 中启用！</string>
+    <string name="dev_options_req">请确保您已登录！</string>
+    <string name="dev_options_1">1. 开启 Instagram，并长按主页按钮。</string>
+    <string name="dev_options_2">2. 导航至开发者选项 > MetaConfig 设定与覆盖。</string>
+    <string name="dev_options_3">3. 搜索「Employee」并启用以下选项：</string>
+    <string name="dev_options_4">4. 最后，从模块中禁用开发者选项以防止应用崩溃。</string>
+    <!--  Don't translate!  -->
+    <string name="is_employee" translatable="false">• is employee</string>
+    <string name="is_employee_or_test_user" translatable="false">• is employee or test user</string>
+    <string name="employee_options" translatable="false">• employee options</string>
+    <!--  distraction free  -->
+    <string name="distraction_free_options">无干扰模式选项</string>
+    <string name="disable_stories">关闭限时动态</string>
+    <string name="disable_feed">关闭动态</string>
+    <string name="disable_reels">关闭连续短片</string>
+    <string name="disable_explore">禁用探索</string>
+    <string name="disable_comments">禁用评论</string>
+    <!--  Miscellaneous  -->
+    <string name="misc">杂项</string>
+    <string name="miscellaneous_options">杂项选项</string>
+    <string name="story_flipping">禁用限时动态翻页</string>
+    <string name="video_autoplay">禁用视频自动播放</string>
+    <string name="follower_toast">显示关注者提示</string>
+    <string name="hooked_methods_toast">显示已启用功能提示</string>
+    <!--  contributor card  -->
+    <string name="contributor_name">Contributor Name</string>
+</resources>

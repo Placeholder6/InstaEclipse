@@ -662,7 +662,13 @@ public class DialogUtils {
         LinearLayout layout = createSwitchLayout(context);
 
         // Create all child switches
-        Switch[] switches = new Switch[]{createSwitch(context, "Disable Story Auto-Swipe", FeatureFlags.disableStoryFlipping), createSwitch(context, "Disable Video Autoplay", FeatureFlags.disableVideoAutoPlay), createSwitch(context, "Show Follower Toast", FeatureFlags.showFollowerToast), createSwitch(context, "Show Feature Toasts", FeatureFlags.showFeatureToasts)};
+        Switch[] switches = new Switch[]{
+                createSwitch(context, "Disable Story Auto-Swipe", FeatureFlags.disableStoryFlipping),
+                createSwitch(context, "Disable Video Autoplay", FeatureFlags.disableVideoAutoPlay),
+                createSwitch(context, "Disable Repost", FeatureFlags.disableRepost),
+                createSwitch(context, "Show Follower Toast", FeatureFlags.showFollowerToast),
+                createSwitch(context, "Show Feature Toasts", FeatureFlags.showFeatureToasts)
+        };
 
         // Create Enable/Disable All switch
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch enableAllSwitch = createSwitch(context, "Enable/Disable All", areAllEnabled(switches));
@@ -693,9 +699,12 @@ public class DialogUtils {
                         FeatureFlags.disableVideoAutoPlay = isChecked;
                         break;
                     case 2:
-                        FeatureFlags.showFollowerToast = isChecked;
+                        FeatureFlags.disableRepost = isChecked;
                         break;
                     case 3:
+                        FeatureFlags.showFollowerToast = isChecked;
+                        break;
+                    case 4:
                         FeatureFlags.showFeatureToasts = isChecked;
                         break;
                 }

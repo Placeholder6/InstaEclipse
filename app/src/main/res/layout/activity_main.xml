@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/black">
+    android:background="@color/black"
+    android:fitsSystemWindows="true">
 
-    <!-- App Bar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black">
@@ -20,7 +20,6 @@
             android:layout_height="48dp"
             android:background="@color/black">
 
-            <!-- App Logo -->
             <ImageView
                 android:id="@+id/toolbar_title_image"
                 android:layout_width="42dp"
@@ -31,66 +30,69 @@
                 android:paddingEnd="7dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                app:tint="@color/white" /> 
+                app:tint="@color/white"
+                tools:ignore="HardcodedText,RtlSymmetry" />
 
-            <!-- App Name -->
             <TextView
                 android:id="@+id/toolbar_title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
                 android:text="@string/app_name"
-		android:textSize="18sp"
-		android:textStyle="bold"
-                android:contentDescription="App Name"
-                android:maxWidth="160dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@color/white" />
 
-            <!-- App Version -->
             <TextView
                 android:id="@+id/toolbar_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
-		android:layout_marginEnd="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/version"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-		android:textStyle="bold"
+                android:textStyle="bold"
                 android:paddingEnd="16dp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Scrollable Container for Fragment -->
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:clipToPadding="false"
-        android:paddingBottom="82dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Fragment Container -->
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.core.widget.NestedScrollView>
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation_menu"
-        app:itemTextColor="@color/white"
-	app:itemIconTint="@drawable/nav_selector"
-	app:itemActiveIndicatorStyle="@null"
-	app:itemRippleColor="@android:color/transparent"
-        android:background="@color/black" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemIconTint="@drawable/nav_selector"
+            app:itemRippleColor="@android:color/transparent"
+            app:itemTextColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
